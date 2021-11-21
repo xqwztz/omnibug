@@ -7,7 +7,7 @@ function Book(props) {
     <div className={`${styles.book} card`}>
       <div className="card-body">
         <div className="row">
-          <div className="col-4">
+          <div className="col-2">
             <img
               className="img-fluid img-thumbnail"
               src={props.cover}

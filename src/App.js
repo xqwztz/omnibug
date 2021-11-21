@@ -3,7 +3,10 @@ import "./App.css";
 import Header from "./components/Header/Header";
 import Menu from "./components/Menu/Menu";
 import Books from "./components/Books/Books";
+import Footer from "./components/Footer/Footer";
 import Searchbar from "./components/Searchbar/Searchbar";
+import Layout from "./components/Layout/Layout";
+import AuthContext from "./context/authContext";
 
 class App extends Component {
   books = [
@@ -34,26 +37,38 @@ class App extends Component {
   ];
   state = {
     books: this.books,
+    loading: true,
+    isAuthenticated: false,
   };
 
   searchHandler(term) {
     console.log("szukaj z app:", term);
-    const books = [...this.books].filter(x => x.title.toLowerCase().includes(term.toLowerCase()));
+    const books = [...this.books].filter((x) =>
+      x.title.toLowerCase().includes(term.toLowerCase())
+    );
     this.setState({ books });
   }
 
   render() {
     return (
-      <div className="App">
-        <Header>
-          <Searchbar onSearch={term => this.searchHandler(term)}/>
-        </Header>
-
-
-
-        <Menu />
-        <Books books={this.state.books} />
-      </div>
+      <AuthContext.Provider
+        value={{
+          isAuthenticated: this.state.isAuthenticated,
+          login: () => this.setState({ isAuthenticated: true }),
+          logout: () => this.setState({ isAuthenticated: false }),
+        }}
+      >
+        <Layout
+          header={
+            <Header>
+              <Searchbar onSearch={(term) => this.searchHandler(term)} />
+            </Header>
+          }
+          menu={<Menu />}
+          content={<Books books={this.state.books} />}
+          footer={<Footer />}
+        />
+      </AuthContext.Provider>
     );
   }
 }
