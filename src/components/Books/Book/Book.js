@@ -1,10 +1,8 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import React from "react";
 import styles from "./Book.module.css";
 
 function Book(props) {
-  console.log(props.cover);
-
   return (
     <div className={`${styles.book} card`}>
       <div className="card-body">
@@ -12,7 +10,6 @@ function Book(props) {
           <div className="col-4">
             <img
               className="img-fluid img-thumbnail"
-
               src={props.cover}
               alt="Diuna"
             />
@@ -32,8 +29,8 @@ function Book(props) {
                 <p className={styles.value}>{props.publisher}</p>
                 <p className={styles.value}>{props.bugs}</p>
                 <a href="#" className="btn btn-primary float-right px-5">
-              Pokaż
-            </a>
+                  Pokaż
+                </a>
               </div>
             </div>
           </div>
@@ -48,8 +45,7 @@ Book.propTypes = {
   author: PropTypes.string.isRequired,
   publisher: PropTypes.string.isRequired,
   bugs: PropTypes.number.isRequired,
-  cover: PropTypes.string.isRequired
-
-}
+  cover: PropTypes.string.isRequired,
+};
 
 export default Book;

@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./components/Header/Header";
 import Menu from "./components/Menu/Menu";
 import Books from "./components/Books/Books";
+import Searchbar from "./components/Searchbar/Searchbar";
 
 class App extends Component {
   books = [
@@ -44,7 +45,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header onSearch={(term) => this.searchHandler(term)} />
+        <Header>
+          <Searchbar onSearch={term => this.searchHandler(term)}/>
+        </Header>
+
+
+
         <Menu />
         <Books books={this.state.books} />
       </div>

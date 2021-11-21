@@ -9,8 +9,6 @@ class Books extends Component {
       <div className={styles.container}>
         <h2 className={styles.title}>Książki</h2>
         {this.props.books.map(book => <Book key={book.id} {...book} />)}
-
-
       </div>
     );
   }
